@@ -10,7 +10,7 @@
             --preto: #1A1A1A;
             --ouro: #D4AF37;
             --fundo: #ffffff;
-            --c-whats: #25D366; /* Cor oficial do WhatsApp */
+            --c-whats: #25D366;
         }
 
         body { 
@@ -39,7 +39,7 @@
             border-bottom: 5px solid var(--vinho); 
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
-        .logo-box { max-width: 280px; }
+        .logo-box { max-width: 280px; height: auto; }
 
         nav { background: var(--preto); padding: 12px; position: sticky; top: 0; z-index: 1000; text-align: center; }
         nav a { color: white; text-decoration: none; margin: 0 15px; font-weight: bold; text-transform: uppercase; font-size: 0.85em; }
@@ -97,13 +97,10 @@
         }
 
         #icone-whats {
-            width: 60px;
-            height: 60px;
+            width: 60px; height: 60px;
             background-color: var(--c-whats);
             border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            display: flex; align-items: center; justify-content: center;
             box-shadow: 2px 2px 10px rgba(0,0,0,0.3);
             transition: transform 0.3s;
         }
@@ -111,27 +108,20 @@
         #icone-whats:hover { transform: scale(1.1); }
 
         #balao-whats {
-            background-color: white;
-            color: #333;
-            padding: 10px 15px;
-            border-radius: 10px;
-            margin-left: 15px;
+            background-color: white; color: #333;
+            padding: 10px 15px; border-radius: 10px; margin-left: 15px;
             box-shadow: 2px 2px 10px rgba(0,0,0,0.1);
-            font-size: 0.85em;
-            font-weight: bold;
-            display: none; /* Inicia escondido */
-            white-space: nowrap;
+            font-size: 0.85em; font-weight: bold;
+            display: none; white-space: nowrap;
         }
 
         footer { background: var(--preto); color: #888; padding: 30px; text-align: center; margin-top: 50px; }
 
-        /* RESPONSIVIDADE (MOBILE-FRIENDLY) */
+        /* RESPONSIVIDADE (MOBILE) */
         @media (max-width: 768px) {
-            .logo-box { max-width: 200px; }
-            nav a { margin: 0 8px; font-size: 0.75em; }
-            .grid-produtos { grid-template-columns: 1fr; } /* Vira coluna única */
-            #icone-whats { width: 50px; height: 50px; }
-            #balao-whats { font-size: 0.75em; padding: 8px 12px; }
+            .grid-produtos { grid-template-columns: 1fr; }
+            #icone-whats { width: 55px; height: 55px; }
+            #balao-whats { font-size: 0.75em; }
         }
     </style>
 </head>
@@ -142,22 +132,22 @@
 </header>
 
 <nav>
-    <a href="#produtos">Catálogo</a>
+    <a href="#produtos">Produtos</a>
     <a href="#orcamento">Orçamento</a>
 </nav>
 
 <div class="container" id="produtos">
-    <h2>Nossos Serviços</h2>
+    <h2>Catálogo de Serviços</h2>
     <div class="grid-produtos">
         <script>
-            const itens = ["Cartões de Visita", "Banners", "Adesivos", "Panfletos", "Tags", "Pastas", "Envelopes", "Recibos", "Calendários", "Ímãs", "Sacolas", "Crachás", "Timbrados", "Receituários", "Folders"];
-            itens.forEach(i => {
+            const servicos = ["Cartões de Visita", "Banners", "Adesivos", "Panfletos", "Tags", "Pastas", "Envelopes", "Recibos", "Calendários", "Ímãs", "Sacolas", "Crachás", "Timbrados", "Receituários", "Folders"];
+            servicos.forEach(s => {
                 document.write(`
                     <div class="produto-card">
-                        <div class="img-placeholder">FOTO</div>
+                        <div class="img-placeholder">IMAGEM</div>
                         <div class="info">
-                            <h3>${i}</h3>
-                            <p>Qualidade premium e entrega rápida.</p>
+                            <h3>${s}</h3>
+                            <p>Impressão de alta qualidade e acabamento fino.</p>
                         </div>
                         <a href="#orcamento" class="btn-card">SOLICITAR ORÇAMENTO</a>
                     </div>
@@ -169,7 +159,7 @@
 
 <div class="container" id="orcamento">
     <div class="sessao-form">
-        <h2 style="margin-top: 0;">Solicitar Orçamento</h2>
+        <h2 style="margin-top: 0;">Solicitar Orçamento Detalhado</h2>
         <form id="formPlanilha">
             <div class="form-group">
                 <label>Nome Completo / Empresa:</label>
@@ -191,16 +181,18 @@
                     <option>Cartão de Visita</option>
                     <option>Banner</option>
                     <option>Adesivo</option>
-                    <option>Fachadas</option>
-                    <option>Plotagem</option>
-                    <option>Outros(Especificar nos Detalhes abaixo)</option>
+                    <option>Outros</option>
                 </select>
             </div>
             <div class="form-group">
                 <label>Detalhes do Pedido:</label>
-                <textarea name="detalhes" rows="4" placeholder="Quantidade, tamanho, gramatura..."></textarea>
+                <textarea name="detalhes" rows="3" placeholder="Quantidade, gramatura, acabamento..."></textarea>
             </div>
-            <button type="submit" id="btnEnviar" class="btn-enviar">ENVIAR PEDIDO</button>
+            <div class="form-group">
+                <label>Possui Arte? Selecione abaixo (Envio final via WhatsApp):</label>
+                <input type="file" id="inputArquivo" name="arquivo_check">
+            </div>
+            <button type="submit" id="btnEnviar" class="btn-enviar">ENVIAR E CHAMAR NO WHATSAPP</button>
         </form>
     </div>
 </div>
@@ -219,7 +211,6 @@
 </footer>
 
 <script>
-    // ⚠️ SUBSTITUA PELA SUA URL DO APPS SCRIPT
     const scriptURL = 'https://script.google.com/macros/s/AKfycbze8z7IMtqrnQNsGSr8oNfIAWmAtxkjgsBT2q57Sby3yAFII7W9cM8aidlIVjP_m5g_/exec'; 
     const form = document.getElementById('formPlanilha');
     const btn = document.getElementById('btnEnviar');
@@ -227,34 +218,41 @@
     form.addEventListener('submit', e => {
         e.preventDefault();
         btn.disabled = true;
-        btn.innerText = "Registrando Pedido...";
+        btn.innerText = "Enviando Pedido...";
 
-        fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+        const formData = new FormData(form);
+        const temArquivo = document.getElementById('inputArquivo').files.length > 0;
+        
+        // Preenche o campo que vai para a Coluna G
+        formData.append('detalhes', temArquivo ? "Arquivo enviado via WhatsApp" : "Nenhum arquivo");
+
+        fetch(scriptURL, { method: 'POST', body: formData })
             .then(response => {
-                alert("Sucesso! Seu orçamento foi registrado.");
+                const nome = form.nome.value;
+                const produto = form.produto.value;
+                const msg = `Olá! Acabei de solicitar um orçamento no site.\n*Nome:* ${nome}\n*Produto:* ${produto}\n${temArquivo ? "*Vou enviar o arquivo da arte aqui abaixo:* 👇" : ""}`;
+                
+                const uri = `https://wa.me/5591984469183?text=${encodeURIComponent(msg)}`;
+                window.open(uri, '_blank');
+
+                alert("Pedido registrado com sucesso! Agora anexe sua arte no WhatsApp.");
                 btn.disabled = false;
-                btn.innerText = "ENVIAR PEDIDO";
+                btn.innerText = "ENVIAR E CHAMAR NO WHATSAPP";
                 form.reset();
             })
             .catch(error => {
-                alert("Erro! Verifique a configuração do Script.");
+                alert("Erro ao gravar. Tente novamente.");
                 btn.disabled = false;
-                btn.innerText = "ENVIAR PEDIDO";
+                btn.innerText = "ENVIAR E CHAMAR NO WHATSAPP";
             });
     });
 
-    // LÓGICA DO BALÃO DO WHATSAPP
+    // Lógica do Balão
     const balao = document.getElementById('balao-whats');
-    
-    // Função para mostrar e esconder o balão
     function gerenciarBalao() {
-        balao.style.display = 'block'; // Mostra
-        setTimeout(() => {
-            balao.style.display = 'none'; // Esconde depois de 3 segundos
-        }, 3000); 
+        balao.style.display = 'block';
+        setTimeout(() => { balao.style.display = 'none'; }, 3000); 
     }
-
-    // Inicia o ciclo a cada 5 segundos
     setInterval(gerenciarBalao, 5000);
 </script>
 
