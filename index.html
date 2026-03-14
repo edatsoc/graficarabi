@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gráfica Rabí - Soluções Digitais</title>
+    <style>
+        :root {
+            --azul: #1a1a8c;
+            --rosa: #e91e63;
+            --amarelo: #ffeb3b;
+            --preto: #212121;
+            --vinho: #7b2c34; /* Baseado na cor do texto do logo */
+            --cinza-claro: #f4f4f4;
+        }
+
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; color: var(--preto); background-color: white; }
+        
+        header { border-bottom: 5px solid var(--vinho); padding: 20px; text-align: center; }
+        .logo-placeholder { max-width: 300px; }
+
+        nav { background: var(--preto); padding: 10px; display: flex; justify-content: center; gap: 20px; }
+        nav a { color: white; text-decoration: none; font-weight: bold; }
+
+        .hero { background: var(--cinza-claro); padding: 60px 20px; text-align: center; border-bottom: 4px solid var(--amarelo); }
+        .hero h1 { color: var(--vinho); font-size: 2.5em; }
+
+        .container { max-width: 1000px; margin: 20px auto; padding: 20px; }
+
+        /* Formulário de Orçamento Robusto */
+        .form-orcamento { background: white; padding: 30px; border: 1px solid #ddd; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        .form-group { margin-bottom: 15px; }
+        label { display: block; font-weight: bold; margin-bottom: 5px; color: var(--vinho); }
+        input, select, textarea { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; }
+        
+        .btn-enviar { background: var(--azul); color: white; border: none; padding: 15px 30px; font-size: 1.1em; cursor: pointer; width: 100%; border-radius: 4px; transition: 0.3s; }
+        .btn-enviar:hover { background: var(--vinho); }
+
+        footer { background: var(--preto); color: white; text-align: center; padding: 30px; margin-top: 50px; }
+    </style>
+</head>
+<body>
+
+<header>
+    <img src="logo-rabi.png" alt="Gráfica Rabí" class="logo-placeholder">
+</header>
+
+<nav>
+    <a href="#inicio">Início</a>
+    <a href="#produtos">Produtos</a>
+    <a href="#orcamento">Solicitar Orçamento</a>
+</nav>
+
+<section class="hero">
+    <h1>Impressão de Qualidade para o seu Negócio</h1>
+    <p>Soluções digitais rápidas, precisas e com acabamento impecável.</p>
+</section>
+
+<div class="container" id="orcamento">
+    <h2 style="text-align:center; color: var(--vinho);">Solicite seu Orçamento Detalhado</h2>
+    
+    <div class="form-orcamento">
+        <form action="#" method="POST"> <div class="form-group">
+                <label>Seu Nome / Empresa:</label>
+                <input type="text" name="nome" required>
+            </div>
+
+            <div class="form-group">
+                <label>Tipo de Produto:</label>
+                <select name="produto">
+                    <option value="cartao">Cartão de Visita</option>
+                    <option value="banner">Banner / Lona</option>
+                    <option value="panfleto">Panfleto / Flyer</option>
+                    <option value="adesivo">Adesivo</option>
+                    <option value="outro">Outro (especificar abaixo)</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Quantidade:</label>
+                <input type="number" name="quantidade" placeholder="Ex: 1000" required>
+            </div>
+
+            <div class="form-group">
+                <label>Especificações Técnicas (Papel, Gramatura, Acabamento):</label>
+                <textarea name="detalhes" rows="4" placeholder="Ex: Papel Couchê 250g, Verniz Localizado, 4x4 cores..."></textarea>
+            </div>
+
+            <div class="form-group">
+                <label>Já possui a arte?</label>
+                <select name="arte">
+                    <option value="sim">Sim, vou enviar o arquivo</option>
+                    <option value="nao">Não, preciso que criem a arte</option>
+                </select>
+            </div>
+
+            <button type="submit" class="btn-enviar">ENVIAR PEDIDO DE ORÇAMENTO</button>
+        </form>
+    </div>
+</div>
+
+<footer>
+    <p>&copy; 2026 Gráfica Rabí Soluções Digitais | Ananindeua - PA</p>
+    <p style="font-size: 0.8em; color: #888;">Segurança jurídica: Todos os pedidos estão sujeitos a análise técnica de arquivos.</p>
+</footer>
+
+</body>
+</html>
