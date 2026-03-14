@@ -9,99 +9,154 @@
             --azul: #1a1a8c;
             --rosa: #e91e63;
             --amarelo: #ffeb3b;
+            --vinho: #7b2c34;
             --preto: #212121;
-            --vinho: #7b2c34; /* Baseado na cor do texto do logo */
-            --cinza-claro: #f4f4f4;
+            --cinza-fundo: #f9f9f9;
         }
 
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; color: var(--preto); background-color: white; }
+        body { font-family: 'Segoe UI', Arial, sans-serif; margin: 0; background-color: var(--cinza-fundo); color: var(--preto); }
         
-        header { border-bottom: 5px solid var(--vinho); padding: 20px; text-align: center; }
-        .logo-placeholder { max-width: 300px; }
+        /* Header e Logo */
+        header { background: white; padding: 20px; text-align: center; border-bottom: 4px solid var(--vinho); }
+        .logo-box { max-width: 280px; }
 
-        nav { background: var(--preto); padding: 10px; display: flex; justify-content: center; gap: 20px; }
-        nav a { color: white; text-decoration: none; font-weight: bold; }
+        /* Navegação */
+        nav { background: var(--preto); padding: 15px; position: sticky; top: 0; z-index: 1000; text-align: center; }
+        nav a { color: white; text-decoration: none; margin: 0 15px; font-weight: bold; text-transform: uppercase; font-size: 0.9em; }
+        nav a:hover { color: var(--amarelo); }
 
-        .hero { background: var(--cinza-claro); padding: 60px 20px; text-align: center; border-bottom: 4px solid var(--amarelo); }
-        .hero h1 { color: var(--vinho); font-size: 2.5em; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 40px 20px; }
 
-        .container { max-width: 1000px; margin: 20px auto; padding: 20px; }
+        h2 { text-align: center; color: var(--vinho); text-transform: uppercase; margin-bottom: 40px; }
 
-        /* Formulário de Orçamento Robusto */
-        .form-orcamento { background: white; padding: 30px; border: 1px solid #ddd; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
-        .form-group { margin-bottom: 15px; }
-        label { display: block; font-weight: bold; margin-bottom: 5px; color: var(--vinho); }
-        input, select, textarea { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; }
-        
-        .btn-enviar { background: var(--azul); color: white; border: none; padding: 15px 30px; font-size: 1.1em; cursor: pointer; width: 100%; border-radius: 4px; transition: 0.3s; }
-        .btn-enviar:hover { background: var(--vinho); }
+        /* Grid de Produtos 3x5 */
+        .grid-produtos { 
+            display: grid; 
+            grid-template-columns: repeat(3, 1fr); /* 3 Colunas */
+            gap: 25px; 
+        }
 
-        footer { background: var(--preto); color: white; text-align: center; padding: 30px; margin-top: 50px; }
+        .produto-card { 
+            background: white; 
+            border: 1px solid #ddd; 
+            border-radius: 8px; 
+            overflow: hidden; 
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .produto-card:hover { 
+            transform: translateY(-5px); 
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1); 
+            border-color: var(--rosa);
+        }
+
+        .img-placeholder { 
+            width: 100%; 
+            height: 200px; 
+            background: #eee; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center;
+            color: #999;
+            font-weight: bold;
+        }
+
+        .info-produto { padding: 15px; text-align: center; flex-grow: 1; }
+        .info-produto h3 { margin: 10px 0; font-size: 1.2em; color: var(--vinho); }
+        .info-produto p { font-size: 0.9em; color: #666; margin-bottom: 15px; }
+
+        .btn-orcamento-card { 
+            display: block; 
+            background: var(--azul); 
+            color: white; 
+            text-decoration: none; 
+            padding: 10px; 
+            border-radius: 0 0 8px 8px; 
+            font-weight: bold;
+            transition: 0.3s;
+        }
+        .btn-orcamento-card:hover { background: var(--vinho); }
+
+        /* Responsividade para Celular */
+        @media (max-width: 768px) {
+            .grid-produtos { grid-template-columns: 1fr; } /* No celular fica 1 coluna */
+        }
+
+        /* Seção do Formulário */
+        .sessao-formulario { background: #fff; padding: 40px; margin-top: 60px; border-radius: 10px; border-top: 6px solid var(--azul); }
     </style>
 </head>
 <body>
 
 <header>
-    <img src="logo-rabi.png" alt="Gráfica Rabí" class="logo-placeholder">
+    <img src="logo_rabi.png" alt="Gráfica Rabí Soluções Digitais" class="logo-box">
 </header>
 
 <nav>
-    <a href="#inicio">Início</a>
     <a href="#produtos">Produtos</a>
     <a href="#orcamento">Solicitar Orçamento</a>
+    <a href="#contato">Contato</a>
 </nav>
 
-<section class="hero">
-    <h1>Impressão de Qualidade para o seu Negócio</h1>
-    <p>Soluções digitais rápidas, precisas e com acabamento impecável.</p>
-</section>
+<div class="container" id="produtos">
+    <h2>Nossos Serviços e Produtos</h2>
+    
+    <div class="grid-produtos">
+        <div class="produto-card">
+            <div class="img-placeholder">FOTO CARTÃO</div>
+            <div class="info-produto">
+                <h3>Cartões de Visita</h3>
+                <p>Couchê 250g/300g, Verniz Total ou Localizado.</p>
+            </div>
+            <a href="#orcamento" class="btn-orcamento-card">ORÇAR AGORA</a>
+        </div>
+
+        <div class="produto-card">
+            <div class="img-placeholder">FOTO PANFLETO</div>
+            <div class="info-produto">
+                <h3>Panfletos / Flyers</h3>
+                <p>Diversos tamanhos e gramaturas de papel.</p>
+            </div>
+            <a href="#orcamento" class="btn-orcamento-card">ORÇAR AGORA</a>
+        </div>
+
+        <div class="produto-card">
+            <div class="img-placeholder">FOTO BANNER</div>
+            <div class="info-produto">
+                <h3>Banners e Lonas</h3>
+                <p>Impressão digital em alta resolução com acabamento.</p>
+            </div>
+            <a href="#orcamento" class="btn-orcamento-card">ORÇAR AGORA</a>
+        </div>
+
+        <div class="produto-card">
+            <div class="img-placeholder">FOTO ADESIVO</div>
+            <div class="info-produto">
+                <h3>Adesivos Personalizados</h3>
+                <p>Vinil fosco ou brilho, corte especial eletrônico.</p>
+            </div>
+            <a href="#orcamento" class="btn-orcamento-card">ORÇAR AGORA</a>
+        </div>
+
+        </div>
+</div>
 
 <div class="container" id="orcamento">
-    <h2 style="text-align:center; color: var(--vinho);">Solicite seu Orçamento Detalhado</h2>
-    
-    <div class="form-orcamento">
-        <form action="#" method="POST"> <div class="form-group">
-                <label>Seu Nome / Empresa:</label>
-                <input type="text" name="nome" required>
-            </div>
-
-            <div class="form-group">
-                <label>Tipo de Produto:</label>
-                <select name="produto">
-                    <option value="cartao">Cartão de Visita</option>
-                    <option value="banner">Banner / Lona</option>
-                    <option value="panfleto">Panfleto / Flyer</option>
-                    <option value="adesivo">Adesivo</option>
-                    <option value="outro">Outro (especificar abaixo)</option>
-                </select>
-            </div>
-
-            <div class="form-group">
-                <label>Quantidade:</label>
-                <input type="number" name="quantidade" placeholder="Ex: 1000" required>
-            </div>
-
-            <div class="form-group">
-                <label>Especificações Técnicas (Papel, Gramatura, Acabamento):</label>
-                <textarea name="detalhes" rows="4" placeholder="Ex: Papel Couchê 250g, Verniz Localizado, 4x4 cores..."></textarea>
-            </div>
-
-            <div class="form-group">
-                <label>Já possui a arte?</label>
-                <select name="arte">
-                    <option value="sim">Sim, vou enviar o arquivo</option>
-                    <option value="nao">Não, preciso que criem a arte</option>
-                </select>
-            </div>
-
-            <button type="submit" class="btn-enviar">ENVIAR PEDIDO DE ORÇAMENTO</button>
-        </form>
+    <div class="sessao-formulario">
+        <h2 style="margin-top:0;">Dúvidas ou Pedidos? Peça um Orçamento</h2>
+        <p style="text-align:center;">Preencha os detalhes técnicos para garantirmos a melhor precisão jurídica e comercial no seu pedido.</p>
+        <div style="text-align:center;">
+            <p><strong>[Aqui inserimos o formulário da etapa anterior]</strong></p>
+        </div>
     </div>
 </div>
 
-<footer>
-    <p>&copy; 2026 Gráfica Rabí Soluções Digitais | Ananindeua - PA</p>
-    <p style="font-size: 0.8em; color: #888;">Segurança jurídica: Todos os pedidos estão sujeitos a análise técnica de arquivos.</p>
+<footer style="background: var(--preto); color: white; padding: 40px 20px; text-align: center;">
+    <p><strong>Gráfica Rabí Soluções Digitais</strong></p>
+    <p>Rua Exemplo, Ananindeua - Pará</p>
+    <p style="font-size: 0.8em; opacity: 0.7;">© 2026 - Desenvolvido por Ed Costa</p>
 </footer>
 
 </body>
