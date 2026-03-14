@@ -44,7 +44,7 @@
         /* FORMULÁRIO */
         .sessao-form { background: #fff; padding: 35px; border-radius: 8px; border: 1px solid #ddd; border-top: 6px solid var(--vinho); margin-top: 50px; box-shadow: 0 8px 20px rgba(0,0,0,0.05); }
         .form-group { margin-bottom: 15px; }
-        .form-check { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 10px; cursor: pointer; }
+        .form-check { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 10px; cursor: pointer; font-size: 0.9em; }
         .form-check input { width: auto; margin-top: 4px; }
         label { display: block; font-weight: bold; color: var(--vinho); margin-bottom: 5px; }
         input, select, textarea { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 4px; box-sizing: border-box; font-family: inherit; }
@@ -72,7 +72,7 @@
 </nav>
 
 <div class="container" id="produtos">
-    <h2>Nossos Produtos</h2>
+    <h2>Catálogo de Serviços</h2>
     <div class="grid-produtos">
         <script>
             const itens = ["Cartões de Visita", "Banners", "Adesivos", "Panfletos", "Tags", "Pastas", "Envelopes", "Recibos", "Calendários", "Ímãs", "Sacolas", "Crachás", "Timbrados", "Receituários", "Folders"];
@@ -114,7 +114,7 @@
                     <input type="checkbox" id="checkArquivo"> Possuo arte/arquivo para enviar via WhatsApp para complementar o orçamento.
                 </label>
                 <label class="form-check">
-                    <input type="checkbox" id="checkLGPD" required> Estou ciente de que meus dados fornecidos serão tratados conforme a <strong>LGPD</strong> apenas para fins de contato e elaboração de orçamento.
+                    <input type="checkbox" id="checkLGPD" required> Estou ciente de que meus dados fornecidos serão tratados conforme a <strong>LGPD</strong> apenas para fins de contato e elaboração de orçamento. (Obrigatório)
                 </label>
             </div>
 
@@ -151,16 +151,16 @@
         params.append('whatsapp', form.whatsapp.value);
         params.append('produto', form.produto.value);
         
-        // CONCATENANDO AS CIÊNCIAS NOS DETALHES PARA A PLANILHA
-        const detalhesTexto = `Solicitação: ${form.detalhes.value} | Envia arquivo no Zap: ${hasFile} | Consentimento LGPD: ${hasLGPD}`;
+        // Concatenando as ciências nos detalhes para a planilha
+        const detalhesTexto = `${form.detalhes.value} | Arte via Zap: ${hasFile} | LGPD: ${hasLGPD}`;
         params.append('detalhes', detalhesTexto);
 
         fetch(scriptURL, { method: 'POST', mode: 'no-cors', body: params })
         .then(() => {
-            const msgWhats = `Olá! Fiz um orçamento no site.\n*Nome:* ${form.nome.value}\n*Produto:* ${form.produto.value}\n${hasFile === "SIM" ? "*Tenho o arquivo da arte e vou enviar aqui:* 👇" : ""}`;
+            const msgWhats = `Olá! Fiz um orçamento no site.\n*Nome:* ${form.nome.value}\n*Produto:* ${form.produto.value}\n${hasFile === "SIM" ? "*Vou enviar a arte logo abaixo:* 👇" : ""}`;
             window.open(`https://wa.me/5591984469183?text=${encodeURIComponent(msgWhats)}`, '_blank');
             
-            alert("Pedido enviado com sucesso! Fale conosco no WhatsApp.");
+            alert("Orçamento registrado! Fale com a gráfica no WhatsApp que abriu.");
             btn.disabled = false;
             btn.innerText = "ENVIAR E CHAMAR NO WHATSAPP";
             form.reset();
