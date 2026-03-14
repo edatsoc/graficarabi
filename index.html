@@ -1,165 +1,6 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gráfica Rabí - Soluções Digitais</title>
-    <style>
-        :root {
-            --vinho: #7b2c34;
-            --preto: #1A1A1A;
-            --ouro: #D4AF37;
-            --fundo: #ffffff;
-            --c-whats: #25D366;
-        }
-
-        body { 
-            font-family: 'Segoe UI', sans-serif; 
-            margin: 0; 
-            background-color: var(--fundo);
-            position: relative;
-        }
-
-        /* 1. MARCA D'ÁGUA FIXA */
-        body::before {
-            content: "";
-            position: fixed;
-            top: 50%; left: 50%;
-            width: 50vw; height: 50vh;
-            transform: translate(-50%, -50%);
-            background: url('logo_rabi.png') no-repeat center;
-            background-size: contain;
-            opacity: 0.05;
-            z-index: -1;
-            pointer-events: none;
-        }
-
-        header { 
-            background: white; padding: 25px; text-align: center; 
-            border-bottom: 5px solid var(--vinho); 
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-        .logo-box { max-width: 280px; height: auto; }
-
-        nav { background: var(--preto); padding: 12px; position: sticky; top: 0; z-index: 1000; text-align: center; }
-        nav a { color: white; text-decoration: none; margin: 0 15px; font-weight: bold; text-transform: uppercase; font-size: 0.85em; }
-
-        .container { max-width: 1200px; margin: 0 auto; padding: 40px 20px; }
-        h2 { text-align: center; color: var(--vinho); text-transform: uppercase; margin-bottom: 30px; }
-
-        /* 2. GRADE DE PRODUTOS 3x5 */
-        .grid-produtos { 
-            display: grid; 
-            grid-template-columns: repeat(3, 1fr); 
-            gap: 20px; 
-        }
-
-        .produto-card { 
-            background: rgba(255, 255, 255, 0.9); 
-            border: 1px solid #ddd; 
-            border-radius: 8px; 
-            text-align: center; 
-            overflow: hidden; 
-            transition: 0.3s;
-        }
-
-        .produto-card:hover { border-color: var(--vinho); transform: translateY(-5px); box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
-
-        .img-placeholder { height: 160px; background: #f8f8f8; display: flex; align-items: center; justify-content: center; color: #ccc; border-bottom: 2px solid var(--vinho); font-weight: bold; }
-
-        .info { padding: 15px; }
-        .info h3 { margin: 0; font-size: 1.1em; color: var(--vinho); }
-        .info p { font-size: 0.8em; color: #666; margin: 10px 0; }
-
-        .btn-card { display: block; background: var(--vinho); color: white; text-decoration: none; padding: 12px; font-weight: bold; font-size: 0.8em; }
-
-        /* 3. FORMULÁRIO */
-        .sessao-form { 
-            background: #fff; padding: 35px; border-radius: 8px; 
-            border: 1px solid #ddd; border-top: 6px solid var(--vinho);
-            margin-top: 50px; box-shadow: 0 8px 20px rgba(0,0,0,0.05);
-        }
-        .form-group { margin-bottom: 15px; }
-        label { display: block; font-weight: bold; color: var(--vinho); margin-bottom: 5px; }
-        input, select, textarea { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 4px; box-sizing: border-box; font-family: inherit; }
-
-        .btn-enviar { background: var(--vinho); color: white; border: none; padding: 18px; width: 100%; font-weight: bold; cursor: pointer; text-transform: uppercase; border-radius: 4px; transition: 0.3s; }
-        .btn-enviar:hover { background: var(--preto); }
-
-        /* 4. BOTÃO FLUTUANTE DO WHATSAPP */
-        #whats-flutuante {
-            position: fixed;
-            bottom: 20px;
-            left: 20px;
-            z-index: 1000;
-            display: flex;
-            align-items: center;
-        }
-
-        #icone-whats {
-            width: 60px; height: 60px;
-            background-color: var(--c-whats);
-            border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            box-shadow: 2px 2px 10px rgba(0,0,0,0.3);
-            transition: transform 0.3s;
-        }
-
-        #icone-whats:hover { transform: scale(1.1); }
-
-        #balao-whats {
-            background-color: white; color: #333;
-            padding: 10px 15px; border-radius: 10px; margin-left: 15px;
-            box-shadow: 2px 2px 10px rgba(0,0,0,0.1);
-            font-size: 0.85em; font-weight: bold;
-            display: none; white-space: nowrap;
-        }
-
-        footer { background: var(--preto); color: #888; padding: 30px; text-align: center; margin-top: 50px; }
-
-        /* RESPONSIVIDADE (MOBILE) */
-        @media (max-width: 768px) {
-            .grid-produtos { grid-template-columns: 1fr; }
-            #icone-whats { width: 55px; height: 55px; }
-            #balao-whats { font-size: 0.75em; }
-        }
-    </style>
-</head>
-<body>
-
-<header>
-    <img src="logo_rabi.png" alt="Gráfica Rabí" class="logo-box">
-</header>
-
-<nav>
-    <a href="#produtos">Produtos</a>
-    <a href="#orcamento">Orçamento</a>
-</nav>
-
-<div class="container" id="produtos">
-    <h2>Catálogo de Serviços</h2>
-    <div class="grid-produtos">
-        <script>
-            const servicos = ["Cartões de Visita", "Banners", "Adesivos", "Panfletos", "Tags", "Pastas", "Envelopes", "Recibos", "Calendários", "Ímãs", "Sacolas", "Crachás", "Timbrados", "Receituários", "Folders"];
-            servicos.forEach(s => {
-                document.write(`
-                    <div class="produto-card">
-                        <div class="img-placeholder">IMAGEM</div>
-                        <div class="info">
-                            <h3>${s}</h3>
-                            <p>Impressão de alta qualidade e acabamento fino.</p>
-                        </div>
-                        <a href="#orcamento" class="btn-card">SOLICITAR ORÇAMENTO</a>
-                    </div>
-                `);
-            });
-        </script>
-    </div>
-</div>
-
 <div class="container" id="orcamento">
     <div class="sessao-form">
-        <h2 style="margin-top: 0;">Solicitar Orçamento Detalhado</h2>
+        <h2 style="margin-top: 0;">Solicitar Orçamento</h2>
         <form id="formPlanilha">
             <div class="form-group">
                 <label>Nome Completo / Empresa:</label>
@@ -172,43 +13,29 @@
                 </div>
                 <div class="form-group" style="flex:1;">
                     <label>WhatsApp:</label>
-                    <input type="tel" name="whatsapp" placeholder="(91) 9XXXX-XXXX" required>
+                    <input type="tel" name="whatsapp" required>
                 </div>
             </div>
             <div class="form-group">
                 <label>Produto de Interesse:</label>
                 <select name="produto">
-                    <option>Cartão de Visita</option>
-                    <option>Banner</option>
-                    <option>Adesivo</option>
-                    <option>Outros</option>
+                    <option value="Cartão de Visita">Cartão de Visita</option>
+                    <option value="Banner">Banner</option>
+                    <option value="Adesivo">Adesivo</option>
+                    <option value="Outros">Outros</option>
                 </select>
             </div>
             <div class="form-group">
                 <label>Detalhes do Pedido:</label>
-                <textarea name="detalhes" rows="3" placeholder="Quantidade, gramatura, acabamento..."></textarea>
+                <textarea name="detalhes" rows="3" placeholder="Quantidade, gramatura..."></textarea>
             </div>
             <div class="form-group">
                 <label>Possui Arte? Selecione abaixo (Envio final via WhatsApp):</label>
-                <input type="file" id="inputArquivo" name="arquivo_check">
-            </div>
+                <input type="file" id="inputArquivo"> </div>
             <button type="submit" id="btnEnviar" class="btn-enviar">ENVIAR E CHAMAR NO WHATSAPP</button>
         </form>
     </div>
 </div>
-
-<a href="https://wa.me/5591984469183" target="_blank" id="whats-flutuante">
-    <div id="balao-whats">Dúvidas? Chama no WhatsApp</div>
-    <div id="icone-whats">
-        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="white" viewBox="0 0 16 16">
-            <path d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 0 3.627 0 7.994c0 1.397.365 2.76 1.058 3.96L0 16l4.136-1.086c1.16.632 2.463.967 3.791.967 4.363 0 7.994-3.628 7.994-7.994a7.85 7.85 0 0 0-2.326-5.602zm-5.607 12.112a6.59 6.59 0 0 1-3.32-.888l-.238-.142-2.466.647.66-2.42-.157-.25a6.58 6.58 0 0 1-1.005-3.483c0-3.63 2.962-6.593 6.59-6.593a6.59 6.59 0 0 1 6.59 6.593c0 3.63-2.96 6.593-6.59 6.593zM10.15 6.315c-.131-.065-.776-.382-.896-.425-.12-.043-.208-.065-.296.065-.088.13-.339.425-.415.51-.077.085-.153.094-.284.029-.13-.065-.55-.203-.998-.602-.349-.311-.585-.695-.653-.824-.068-.13-.007-.2-.072-.265-.059-.059-.131-.153-.197-.23-.065-.077-.088-.13-.13-.213-.043-.085-.022-.161-.011-.226.011-.065.088-.213.13-.319.043-.106.065-.181.033-.245-.033-.065-.296-.713-.405-.976-.106-.255-.213-.221-.296-.221-.08 0-.172-.006-.266-.006-.094 0-.248.036-.378.177-.13.141-.497.486-.497 1.185 0 .7.51 1.373.582 1.46.072.086 1.003 1.532 2.43 2.15.34.147.605.235.81.3.342.109.654.094.901.057.276-.041.776-.317.886-.624.11-.306.11-.568.077-.624-.033-.056-.106-.089-.236-.154z"/>
-        </svg>
-    </div>
-</a>
-
-<footer>
-    <p>© 2026 <strong>Gráfica Rabí Soluções Digitais</strong> - Ananindeua/PA</p>
-</footer>
 
 <script>
     const scriptURL = 'https://script.google.com/macros/s/AKfycbze8z7IMtqrnQNsGSr8oNfIAWmAtxkjgsBT2q57Sby3yAFII7W9cM8aidlIVjP_m5g_/exec'; 
@@ -220,41 +47,42 @@
         btn.disabled = true;
         btn.innerText = "Enviando Pedido...";
 
-        const formData = new FormData(form);
-        const temArquivo = document.getElementById('inputArquivo').files.length > 0;
+        // Criamos um objeto de URL Search Params para enviar APENAS TEXTO
+        // Isso evita o erro de envio de arquivos pesados para o Apps Script
+        const params = new URLSearchParams();
+        params.append('nome', form.nome.value);
+        params.append('email', form.email.value);
+        params.append('whatsapp', form.whatsapp.value);
+        params.append('produto', form.produto.value);
         
-        // Preenche o campo que vai para a Coluna G
-        formData.append('detalhes', temArquivo ? "Arquivo enviado via WhatsApp" : "Nenhum arquivo");
+        const temArquivo = document.getElementById('inputArquivo').files.length > 0;
+        const infoArquivo = temArquivo ? " [Arquivo enviado via WhatsApp]" : " [Sem arquivo]";
+        params.append('detalhes', form.detalhes.value + infoArquivo);
 
-        fetch(scriptURL, { method: 'POST', body: formData })
-            .then(response => {
-                const nome = form.nome.value;
-                const produto = form.produto.value;
-                const msg = `Olá! Acabei de solicitar um orçamento no site.\n*Nome:* ${nome}\n*Produto:* ${produto}\n${temArquivo ? "*Vou enviar o arquivo da arte aqui abaixo:* 👇" : ""}`;
-                
-                const uri = `https://wa.me/5591984469183?text=${encodeURIComponent(msg)}`;
-                window.open(uri, '_blank');
+        fetch(scriptURL, { 
+            method: 'POST', 
+            mode: 'no-cors', // Adicionado para evitar bloqueios de segurança
+            body: params 
+        })
+        .then(() => {
+            // No modo 'no-cors' o fetch não retorna 'ok', então tratamos como sucesso
+            const nome = form.nome.value;
+            const produto = form.produto.value;
+            const msg = `Olá! Solicitei um orçamento no site.\n*Nome:* ${nome}\n*Produto:* ${produto}\n${temArquivo ? "*Segue o arquivo da arte:* 👇" : ""}`;
+            
+            const uri = `https://wa.me/5591984469183?text=${encodeURIComponent(msg)}`;
+            window.open(uri, '_blank');
 
-                alert("Pedido registrado com sucesso! Agora anexe sua arte no WhatsApp.");
-                btn.disabled = false;
-                btn.innerText = "ENVIAR E CHAMAR NO WHATSAPP";
-                form.reset();
-            })
-            .catch(error => {
-                alert("Erro ao gravar. Tente novamente.");
-                btn.disabled = false;
-                btn.innerText = "ENVIAR E CHAMAR NO WHATSAPP";
-            });
+            alert("Sucesso! Orçamento registrado. Agora mande a arte no WhatsApp.");
+            btn.disabled = false;
+            btn.innerText = "ENVIAR E CHAMAR NO WHATSAPP";
+            form.reset();
+        })
+        .catch(error => {
+            console.error(error);
+            alert("Erro ao gravar. Verifique se o Script está publicado como 'Qualquer Pessoa'.");
+            btn.disabled = false;
+            btn.innerText = "ENVIAR E CHAMAR NO WHATSAPP";
+        });
     });
-
-    // Lógica do Balão
-    const balao = document.getElementById('balao-whats');
-    function gerenciarBalao() {
-        balao.style.display = 'block';
-        setTimeout(() => { balao.style.display = 'none'; }, 3000); 
-    }
-    setInterval(gerenciarBalao, 5000);
 </script>
-
-</body>
-</html>
