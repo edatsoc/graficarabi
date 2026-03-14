@@ -6,86 +6,113 @@
     <title>Gráfica Rabí - Soluções Digitais</title>
     <style>
         :root {
-            --azul: #1a1a8c;
-            --rosa: #e91e63;
-            --amarelo: #ffeb3b;
-            --vinho: #7b2c34;
-            --preto: #212121;
-            --cinza-fundo: #f9f9f9;
+            --ouro: #D4AF37;
+            --ouro-escuro: #B8860B;
+            --preto-premium: #1A1A1A;
+            --cinza-texto: #333;
+            --fundo-claro: #FFFFFF;
+            --borda: #E5E5E5;
         }
 
-        body { font-family: 'Segoe UI', Arial, sans-serif; margin: 0; background-color: var(--cinza-fundo); color: var(--preto); }
+        body { font-family: 'Poppins', 'Segoe UI', sans-serif; margin: 0; background-color: #FDFDFD; color: var(--cinza-texto); }
         
-        /* Header e Logo */
-        header { background: white; padding: 20px; text-align: center; border-bottom: 4px solid var(--vinho); }
-        .logo-box { max-width: 280px; }
+        /* Header com a Logo Ouro */
+        header { background: white; padding: 25px; text-align: center; border-bottom: 4px solid var(--ouro); }
+        .logo-box { max-width: 250px; filter: drop-shadow(0px 2px 2px rgba(0,0,0,0.1)); }
 
-        /* Navegação */
-        nav { background: var(--preto); padding: 15px; position: sticky; top: 0; z-index: 1000; text-align: center; }
-        nav a { color: white; text-decoration: none; margin: 0 15px; font-weight: bold; text-transform: uppercase; font-size: 0.9em; }
-        nav a:hover { color: var(--amarelo); }
+        /* Menu Black & Gold */
+        nav { background: var(--preto-premium); padding: 15px; position: sticky; top: 0; z-index: 1000; text-align: center; }
+        nav a { color: var(--ouro); text-decoration: none; margin: 0 15px; font-weight: 600; text-transform: uppercase; font-size: 0.85em; letter-spacing: 1px; }
+        nav a:hover { color: white; }
 
         .container { max-width: 1200px; margin: 0 auto; padding: 40px 20px; }
 
-        h2 { text-align: center; color: var(--vinho); text-transform: uppercase; margin-bottom: 40px; }
+        h2 { text-align: center; color: var(--preto-premium); text-transform: uppercase; margin-bottom: 40px; position: relative; }
+        h2::after { content: ''; display: block; width: 60px; height: 3px; background: var(--ouro); margin: 10px auto; }
 
         /* Grid de Produtos 3x5 */
         .grid-produtos { 
             display: grid; 
-            grid-template-columns: repeat(3, 1fr); /* 3 Colunas */
-            gap: 25px; 
+            grid-template-columns: repeat(3, 1fr); 
+            gap: 30px; 
         }
 
         .produto-card { 
             background: white; 
-            border: 1px solid #ddd; 
-            border-radius: 8px; 
+            border: 1px solid var(--borda); 
+            border-radius: 4px; 
             overflow: hidden; 
-            transition: transform 0.3s, box-shadow 0.3s;
+            transition: all 0.3s ease;
             display: flex;
             flex-direction: column;
         }
 
         .produto-card:hover { 
-            transform: translateY(-5px); 
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1); 
-            border-color: var(--rosa);
+            transform: translateY(-8px); 
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1); 
+            border-color: var(--ouro);
         }
 
-        .img-placeholder { 
+        .img-produto { 
             width: 100%; 
-            height: 200px; 
-            background: #eee; 
+            height: 220px; 
+            background: #f0f0f0; 
             display: flex; 
             align-items: center; 
             justify-content: center;
-            color: #999;
-            font-weight: bold;
+            color: #bbb;
+            border-bottom: 2px solid var(--ouro);
         }
 
-        .info-produto { padding: 15px; text-align: center; flex-grow: 1; }
-        .info-produto h3 { margin: 10px 0; font-size: 1.2em; color: var(--vinho); }
-        .info-produto p { font-size: 0.9em; color: #666; margin-bottom: 15px; }
+        .info-produto { padding: 20px; text-align: center; flex-grow: 1; }
+        .info-produto h3 { margin: 0 0 10px 0; font-size: 1.1em; color: var(--preto-premium); }
+        .info-produto p { font-size: 0.85em; color: #777; line-height: 1.4; }
 
-        .btn-orcamento-card { 
+        .btn-card { 
             display: block; 
-            background: var(--azul); 
-            color: white; 
+            background: var(--preto-premium); 
+            color: var(--ouro); 
             text-decoration: none; 
-            padding: 10px; 
-            border-radius: 0 0 8px 8px; 
+            padding: 12px; 
             font-weight: bold;
+            font-size: 0.9em;
+            transition: 0.3s;
+            border-top: 1px solid var(--ouro);
+        }
+        .btn-card:hover { background: var(--ouro); color: var(--preto-premium); }
+
+        /* Formulário de Orçamento com Detalhes Técnicos */
+        .sessao-formulario { 
+            background: white; 
+            padding: 40px; 
+            margin-top: 60px; 
+            border-radius: 4px; 
+            border: 1px solid var(--ouro); 
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        .form-group { margin-bottom: 20px; }
+        label { display: block; font-weight: bold; margin-bottom: 8px; color: var(--preto-premium); font-size: 0.9em; }
+        input, select, textarea { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 4px; font-family: inherit; }
+        
+        .btn-enviar { 
+            background: var(--ouro); 
+            color: var(--preto-premium); 
+            border: none; 
+            padding: 18px; 
+            font-size: 1em; 
+            font-weight: bold; 
+            cursor: pointer; 
+            width: 100%; 
+            border-radius: 4px; 
+            text-transform: uppercase;
             transition: 0.3s;
         }
-        .btn-orcamento-card:hover { background: var(--vinho); }
+        .btn-enviar:hover { background: var(--ouro-escuro); color: white; }
 
-        /* Responsividade para Celular */
-        @media (max-width: 768px) {
-            .grid-produtos { grid-template-columns: 1fr; } /* No celular fica 1 coluna */
-        }
+        footer { background: var(--preto-premium); color: #888; padding: 50px 20px; text-align: center; margin-top: 60px; }
+        footer strong { color: var(--ouro); }
 
-        /* Seção do Formulário */
-        .sessao-formulario { background: #fff; padding: 40px; margin-top: 60px; border-radius: 10px; border-top: 6px solid var(--azul); }
+        @media (max-width: 768px) { .grid-produtos { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
@@ -95,49 +122,40 @@
 </header>
 
 <nav>
-    <a href="#produtos">Produtos</a>
+    <a href="#produtos">Catálogo de Produtos</a>
     <a href="#orcamento">Solicitar Orçamento</a>
-    <a href="#contato">Contato</a>
+    <a href="#sobre">A Gráfica</a>
 </nav>
 
 <div class="container" id="produtos">
-    <h2>Nossos Serviços e Produtos</h2>
+    <h2>Produtos em Destaque</h2>
     
     <div class="grid-produtos">
         <div class="produto-card">
-            <div class="img-placeholder">FOTO CARTÃO</div>
+            <div class="img-produto">FOTO CARTÃO</div>
             <div class="info-produto">
-                <h3>Cartões de Visita</h3>
-                <p>Couchê 250g/300g, Verniz Total ou Localizado.</p>
+                <h3>Cartões de Visita Premium</h3>
+                <p>Acabamentos em Verniz Localizado, Soft Touch e Hot Stamping Ouro.</p>
             </div>
-            <a href="#orcamento" class="btn-orcamento-card">ORÇAR AGORA</a>
+            <a href="#orcamento" class="btn-card">SOLICITAR ORÇAMENTO</a>
         </div>
 
         <div class="produto-card">
-            <div class="img-placeholder">FOTO PANFLETO</div>
+            <div class="img-produto">FOTO BANNER</div>
             <div class="info-produto">
-                <h3>Panfletos / Flyers</h3>
-                <p>Diversos tamanhos e gramaturas de papel.</p>
+                <h3>Banners e Fachadas</h3>
+                <p>Impressão em alta resolução para grandes formatos e sinalização externa.</p>
             </div>
-            <a href="#orcamento" class="btn-orcamento-card">ORÇAR AGORA</a>
+            <a href="#orcamento" class="btn-card">SOLICITAR ORÇAMENTO</a>
         </div>
 
         <div class="produto-card">
-            <div class="img-placeholder">FOTO BANNER</div>
+            <div class="img-produto">FOTO ADESIVO</div>
             <div class="info-produto">
-                <h3>Banners e Lonas</h3>
-                <p>Impressão digital em alta resolução com acabamento.</p>
+                <h3>Adesivos Decorativos</h3>
+                <p>Recorte especial para vitrines, frotas e personalização de ambientes.</p>
             </div>
-            <a href="#orcamento" class="btn-orcamento-card">ORÇAR AGORA</a>
-        </div>
-
-        <div class="produto-card">
-            <div class="img-placeholder">FOTO ADESIVO</div>
-            <div class="info-produto">
-                <h3>Adesivos Personalizados</h3>
-                <p>Vinil fosco ou brilho, corte especial eletrônico.</p>
-            </div>
-            <a href="#orcamento" class="btn-orcamento-card">ORÇAR AGORA</a>
+            <a href="#orcamento" class="btn-card">SOLICITAR ORÇAMENTO</a>
         </div>
 
         </div>
@@ -145,18 +163,35 @@
 
 <div class="container" id="orcamento">
     <div class="sessao-formulario">
-        <h2 style="margin-top:0;">Dúvidas ou Pedidos? Peça um Orçamento</h2>
-        <p style="text-align:center;">Preencha os detalhes técnicos para garantirmos a melhor precisão jurídica e comercial no seu pedido.</p>
-        <div style="text-align:center;">
-            <p><strong>[Aqui inserimos o formulário da etapa anterior]</strong></p>
-        </div>
+        <h2>Orçamento Detalhado</h2>
+        <form action="#" method="POST">
+            <div class="form-group">
+                <label>Seu Nome ou Empresa:</label>
+                <input type="text" name="nome" placeholder="Ex: Edivan Costa" required>
+            </div>
+            <div class="form-group">
+                <label>Tipo de Material:</label>
+                <select name="material">
+                    <option>Cartão de Visita</option>
+                    <option>Banner / Lona</option>
+                    <option>Adesivo / Rótulo</option>
+                    <option>Panfleto / Flyer</option>
+                    <option>Brinde Personalizado</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Especificações Técnicas (Gramatura, Cor, Acabamento):</label>
+                <textarea rows="4" placeholder="Ex: Papel 300g, 4x4 cores, acabamento fosco..."></textarea>
+            </div>
+            <button type="submit" class="btn-enviar">Enviar para Análise Técnica</button>
+        </form>
     </div>
 </div>
 
-<footer style="background: var(--preto); color: white; padding: 40px 20px; text-align: center;">
+<footer>
     <p><strong>Gráfica Rabí Soluções Digitais</strong></p>
-    <p>Rua Exemplo, Ananindeua - Pará</p>
-    <p style="font-size: 0.8em; opacity: 0.7;">© 2026 - Desenvolvido por Ed Costa</p>
+    <p>Ananindeua - Pará | Soluções em Impressão de Alta Qualidade</p>
+    <p style="font-size: 0.75em; margin-top: 20px;">Segurança jurídica: Orçamentos válidos por 5 dias úteis mediante análise de arquivo original.</p>
 </footer>
 
 </body>
